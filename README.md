@@ -1,16 +1,16 @@
 # taraBridge
 Javascript Bridge for tara print, menu and lockscreen
 
-## TaraKiosk.js Usage
+## KioskService.js Usage
 ```js
-import { TaraKiosk } from './TaraKiosk.js';
+import { KioskService } from './KioskService.js';
 
 // Get list of simple package strings[cite: 2]
-const packageNames = TaraKiosk.getWhitelistedApps();
+const packageNames = KioskService.getWhitelistedApps();
 console.log("Allowed Packages:", packageNames);
 
 // Get apps grouped by category with Base64 icons[cite: 2]
-const categorizedApps = TaraKiosk.getWhitelistedAppsGroupedByCategory();
+const categorizedApps = KioskService.getWhitelistedAppsGroupedByCategory();
 console.log("Categorized Apps:", categorizedApps);
 /*
 Output example:
@@ -21,89 +21,89 @@ Output example:
 */
 
 // Launch a target app dynamically[cite: 2]
-TaraKiosk.launchApp("com.duolingo");
+KioskService.launchApp("com.duolingo");
 
 // Get details of app opened prior to kiosk[cite: 2]
-const lastApp = TaraKiosk.getPreviouslyOpenedApp();
+const lastApp = KioskService.getPreviouslyOpenedApp();
 console.log("Previously Opened App:", lastApp.appName, lastApp.packageName);
 
 
 // Save encrypted auth token[cite: 2]
-TaraKiosk.setSecureData("authToken", "eyJhbGciOiJIUzI1NiI...");
+KioskService.setSecureData("authToken", "eyJhbGciOiJIUzI1NiI...");
 
 // Read encrypted value[cite: 2]
-const token = TaraKiosk.getSecureData("authToken", "GUEST");
+const token = KioskService.getSecureData("authToken", "GUEST");
 
 // Remove a specific key[cite: 2]
-TaraKiosk.removeSecureData("authToken");
+KioskService.removeSecureData("authToken");
 
 // Clear all encrypted preferences[cite: 2]
-TaraKiosk.clearSecureData();
+KioskService.clearSecureData();
 
 
 // Clear app cache for all whitelisted packages[cite: 2]
-TaraKiosk.clearAllWhitelistedAppsCache();
+KioskService.clearAllWhitelistedAppsCache();
 
 // Clear cache for a specific app[cite: 2]
-TaraKiosk.clearAppCacheByPackage("com.example.app");
+KioskService.clearAppCacheByPackage("com.example.app");
 
 // Clear default media folders (Downloads, DCIM, Movies, Pictures)[cite: 2]
-TaraKiosk.clearDefaultMediaFolders();
+KioskService.clearDefaultMediaFolders();
 
 // Clear specific custom folder paths[cite: 2]
-TaraKiosk.clearCustomFolders([
+KioskService.clearCustomFolders([
   "/sdcard/Download/TempPdfs",
   "/sdcard/DCIM/KioskCaptures"
 ]);
 
 // Upload text/HTML file[cite: 2]
-TaraKiosk.uploadTextFile("index.html", "<h1>Welcome to Kiosk</h1>");
+KioskService.uploadTextFile("index.html", "<h1>Welcome to Kiosk</h1>");
 
 // Upload Base64 binary file[cite: 2]
-TaraKiosk.uploadFile("logo.png", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...");
+KioskService.uploadFile("logo.png", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...");
 
 // List all files inside secure file storage[cite: 2]
-const fileList = TaraKiosk.listSecureFiles();
+const fileList = KioskService.listSecureFiles();
 console.log("Stored Secure Files:", fileList); // ["index.html", "logo.png"]
 
 // Delete a secure file[cite: 2]
-TaraKiosk.deleteSecureFile("logo.png");
+KioskService.deleteSecureFile("logo.png");
 
 
 // Get entire device stats object[cite: 2]
-const device = TaraKiosk.getDeviceInfo();
+const device = KioskService.getDeviceInfo();
 console.log(`Device: ${device.manufacturer} ${device.model} (Android ${device.osVersion})`);
 console.log(`Battery: ${device.batteryLevel}% (Charging: ${device.isCharging})`);
 console.log(`IP: Wi-Fi (${device.wifiIp}), Ethernet (${device.ethernetIp})`);
 
 // Measure latency to server[cite: 2]
-const pingMs = TaraKiosk.getNetworkLatency("8.8.8.8");
+const pingMs = KioskService.getNetworkLatency("8.8.8.8");
 console.log(`Ping latency: ${pingMs} ms`);
 
 // Check connected Bluetooth peripherals[cite: 2]
-const isBtConnected = TaraKiosk.isBluetoothConnected();
+const isBtConnected = KioskService.isBluetoothConnected();
 console.log("Bluetooth Connected:", isBtConnected);
 
 
 // List running background app packages[cite: 2]
-const runningApps = TaraKiosk.getRunningBackgroundApps();
+const runningApps = KioskService.getRunningBackgroundApps();
 console.log("Running background apps:", runningApps);
 
 // Stop a running application process[cite: 2]
-TaraKiosk.stopApp("com.example.app");
+KioskService.stopApp("com.example.app");
 
 // Show native Toast message[cite: 2]
-TaraKiosk.showToast("Kiosk Settings Updated!");
+KioskService.showToast("Kiosk Settings Updated!");
 
 // Trigger Google Accounts removal[cite: 2]
-TaraKiosk.removeGoogleAccount();
+KioskService.removeGoogleAccount();
 
 
 // Trigger transition to standard Webview Activity
-TaraKiosk.moveToWebviewActivity();
+KioskService.moveToWebviewActivity();
 
 // Trigger transition to Lockscreen Activity
-TaraKiosk.moveToLockscreenWebviewActivity();
+KioskService.moveToLockscreenWebviewActivity();
 ```
 
 ## TaraPrint.js Usage
