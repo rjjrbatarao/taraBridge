@@ -3,7 +3,7 @@ Javascript Bridge for tara print, menu and lockscreen
 
 ## KioskService.js Usage
 ```js
-import { KioskService } from './KioskService.js';
+import { KioskService } from './taraKiosk.js';
 
 // Get list of simple package strings[cite: 2]
 const packageNames = KioskService.getWhitelistedApps();
@@ -108,6 +108,8 @@ KioskService.moveToLockscreenWebviewActivity();
 
 ## TaraPrint.js Usage
 ```js
+import { PrinterService } from './taraPrint.js';
+
 // Scan for 3 seconds and get available Network and Bluetooth printers
 const printers = PrinterService.getDiscoveredPrinters(3000);
 
