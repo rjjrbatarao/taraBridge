@@ -1,5 +1,5 @@
 # taraBridge
-Javascript Bridge for tara print, menu and lockscreen
+Javascript Bridge for tara print, menu and lockscreen. Built for TaraKiosk android app it enables web developers to access native android functions like network printing, bluetooth spp, apps whitelist in json, app launching, file management, file uploads, and other functions required by kiosk.
 
 ## KioskService.js Usage
 ```js
