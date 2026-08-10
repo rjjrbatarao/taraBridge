@@ -104,6 +104,15 @@ export class KioskService {
     }
   }
 
+  static getRunningBackgroundAppsCount(){
+	  if (!this.isBridgeAvailable()) return {};
+	  try {
+		  return window.TaraBridge.getRunningBackgroundAppsCount();
+	  } catch (e) {
+		  return 0;
+	  }
+  }
+	
   // ==========================================
   // 🔒 SECURE ENCRYPTED STORAGE
   // ==========================================
@@ -129,13 +138,17 @@ export class KioskService {
   }
 
   // ==========================================
+  // 🔒 PERSISTENT STORAGE
+  // ==========================================
+	
+  // ==========================================
   // ⚙️ PROCESS & APP MANAGEMENT
   // ==========================================
 
-  static getRunningBackgroundApps() {
+  static getRunningBackgroundAppsDetails() {
     if (!this.isBridgeAvailable()) return [];
     try {
-      return JSON.parse(window.TaraBridge.getRunningBackgroundApps() || "[]");
+      return JSON.parse(window.TaraBridge.getRunningBackgroundAppsDetails() || "[]");
     } catch (e) {
       return [];
     }
@@ -215,6 +228,14 @@ export class KioskService {
   }
 
   // ==========================================
+  // 📱 ESP32 BRIDGE
+  // ==========================================
+  static getEspData() {
+    if (!this.isBridgeAvailable()) return false;
+    return window.TaraBridge.getEspData();
+  }
+  
+  // ==========================================
   // 📱 SYSTEM & HARDWARE INFO
   // ==========================================
 
@@ -234,7 +255,13 @@ export class KioskService {
       manufacturer: window.TaraBridge.getManufacturer(),
       appVersion: window.TaraBridge.getAppVersion(),
       batteryLevel: window.TaraBridge.getBatteryLevel(),
-      isCharging: window.TaraBridge.isCharging()
+      isCharging: window.TaraBridge.isCharging(),
+	  cpuHz: window.TaraBridge.getCpuHz(),
+      ramMb: window.TaraBridge.getRamMb(),
+      cpuTemp: window.TaraBridge.getCpuTemp(),
+      cpuBrand: window.TaraBridge.getCpuBrand(),
+      cpuCores: window.TaraBridge.getCpuCount(),
+      cpuModel: window.TaraBridge.getCpuModel(),
     };
   }
 }
