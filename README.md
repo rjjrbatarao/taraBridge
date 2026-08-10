@@ -5,11 +5,11 @@ Javascript Bridge for tara print, menu and lockscreen. Built for TaraKiosk andro
 ```js
 import { KioskService } from './taraKiosk.js';
 
-// Get list of simple package strings[cite: 2]
+// Get list of simple package strings
 const packageNames = KioskService.getWhitelistedApps();
 console.log("Allowed Packages:", packageNames);
 
-// Get apps grouped by category with Base64 icons[cite: 2]
+// Get apps grouped by category with Base64 icons
 const categorizedApps = KioskService.getWhitelistedAppsGroupedByCategory();
 console.log("Categorized Apps:", categorizedApps);
 /*
@@ -20,82 +20,82 @@ Output example:
 }
 */
 
-// Launch a target app dynamically[cite: 2]
+// Launch a target app dynamically
 KioskService.launchApp("com.duolingo");
 
-// Get details of app opened prior to kiosk[cite: 2]
+// Get details of app opened prior to kiosk
 const lastApp = KioskService.getPreviouslyOpenedApp();
 console.log("Previously Opened App:", lastApp.appName, lastApp.packageName);
 
 
-// Save encrypted auth token[cite: 2]
+// Save encrypted auth token
 KioskService.setSecureData("authToken", "eyJhbGciOiJIUzI1NiI...");
 
-// Read encrypted value[cite: 2]
+// Read encrypted value
 const token = KioskService.getSecureData("authToken", "GUEST");
 
-// Remove a specific key[cite: 2]
+// Remove a specific key
 KioskService.removeSecureData("authToken");
 
-// Clear all encrypted preferences[cite: 2]
+// Clear all encrypted preferences
 KioskService.clearSecureData();
 
 
-// Clear app cache for all whitelisted packages[cite: 2]
+// Clear app cache for all whitelisted packages
 KioskService.clearAllWhitelistedAppsCache();
 
-// Clear cache for a specific app[cite: 2]
+// Clear cache for a specific app
 KioskService.clearAppCacheByPackage("com.example.app");
 
 // Clear default media folders (Downloads, DCIM, Movies, Pictures)[cite: 2]
 KioskService.clearDefaultMediaFolders();
 
-// Clear specific custom folder paths[cite: 2]
+// Clear specific custom folder paths
 KioskService.clearCustomFolders([
   "/sdcard/Download/TempPdfs",
   "/sdcard/DCIM/KioskCaptures"
 ]);
 
-// Upload text/HTML file[cite: 2]
+// Upload text/HTML file
 KioskService.uploadTextFile("index.html", "<h1>Welcome to Kiosk</h1>");
 
-// Upload Base64 binary file[cite: 2]
+// Upload Base64 binary file
 KioskService.uploadFile("logo.png", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...");
 
-// List all files inside secure file storage[cite: 2]
+// List all files inside secure file storage
 const fileList = KioskService.listSecureFiles();
 console.log("Stored Secure Files:", fileList); // ["index.html", "logo.png"]
 
-// Delete a secure file[cite: 2]
+// Delete a secure file
 KioskService.deleteSecureFile("logo.png");
 
 
-// Get entire device stats object[cite: 2]
+// Get entire device stats object
 const device = KioskService.getDeviceInfo();
 console.log(`Device: ${device.manufacturer} ${device.model} (Android ${device.osVersion})`);
 console.log(`Battery: ${device.batteryLevel}% (Charging: ${device.isCharging})`);
 console.log(`IP: Wi-Fi (${device.wifiIp}), Ethernet (${device.ethernetIp})`);
 
-// Measure latency to server[cite: 2]
+// Measure latency to server
 const pingMs = KioskService.getNetworkLatency("8.8.8.8");
 console.log(`Ping latency: ${pingMs} ms`);
 
-// Check connected Bluetooth peripherals[cite: 2]
+// Check connected Bluetooth peripherals
 const isBtConnected = KioskService.isBluetoothConnected();
 console.log("Bluetooth Connected:", isBtConnected);
 
 
-// List running background app packages[cite: 2]
-const runningApps = KioskService.getRunningBackgroundApps();
+// List running background app packages
+const runningApps = KioskService.getRunningBackgroundAppsDetails();
 console.log("Running background apps:", runningApps);
 
-// Stop a running application process[cite: 2]
+// Stop a running application process
 KioskService.stopApp("com.example.app");
 
 // Show native Toast message[cite: 2]
 KioskService.showToast("Kiosk Settings Updated!");
 
-// Trigger Google Accounts removal[cite: 2]
+// Trigger Google Accounts removal
 KioskService.removeGoogleAccount();
 
 
