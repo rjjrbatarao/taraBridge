@@ -229,7 +229,7 @@ async function runAllKioskMethods() {
   console.log('getBatteryLevel:', TaraKiosk.getBatteryLevel());
   console.log('isCharging:', TaraKiosk.isCharging());
 
-  // ==================== 12. SENSOR INFO ====================
+  // ==================== 13. SENSOR INFO ====================
   console.log('\n--- 13. Sensor Info ---');
   console.log('startSensorUpdates:', TaraKiosk.startSensorUpdates());
   console.log('getAccelerometerData:', TaraKiosk.getAccelerometerData());
