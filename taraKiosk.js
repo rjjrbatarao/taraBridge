@@ -590,4 +590,67 @@ export class KioskService {
   static isCharging() {
     return this.#callNative('isCharging', false);
   }
+  
+  /** Register listeners to start receiving real-time sensor updates */
+  static startSensorUpdates() {
+    return this.#callNative('startSensorUpdates', false);
+  }
+
+  /** Unregister sensor listeners to conserve battery power */
+  static stopSensorUpdates() {
+    return this.#callNative('stopSensorUpdates', false);
+  }
+
+  /** Get Accelerometer 3-axis values as an object {x, y, z} */
+  static getAccelerometerData() {
+    const result = this.#callNative('getAccelerometerData', '{}');
+    return KioskService.#safeJsonParse(result, { x: 0, y: 0, z: 0 });
+  }
+
+  /** Get Gyroscope 3-axis rotational speed as an object {x, y, z} */
+  static getGyroscopeData() {
+    const result = this.#callNative('getGyroscopeData', '{}');
+    return KioskService.#safeJsonParse(result, { x: 0, y: 0, z: 0 });
+  }
+
+  /** Get Ambient Light level in Lux */
+  static getLightLux() {
+    return this.#callNative('getLightLux', 0.0);
+  }
+
+  /** Get Proximity distance in centimeters */
+  static getProximityCm() {
+    return this.#callNative('getProximityCm', 0.0);
+  }
+
+  /** Get Atmospheric Pressure in hPa / mbar */
+  static getPressureHpa() {
+    return this.#callNative('getPressureHpa', 0.0);
+  }
+
+  /** Get Ambient Air Temperature in Celsius */
+  static getAmbientTempC() {
+    return this.#callNative('getAmbientTempC', 0.0);
+  }
+
+  /** Get all sensor metrics in a single consolidated object */
+  static getAllSensorsData() {
+    const result = this.#callNative('getAllSensorsData', '{}');
+    return KioskService.#safeJsonParse(result, {
+      isListening: false,
+      accelerometer: { x: 0, y: 0, z: 0 },
+      gyroscope: { x: 0, y: 0, z: 0 },
+      lightLux: 0,
+      proximityCm: 0,
+      pressureHpa: 0,
+      ambientTempC: 0
+    });
+  }
+
+  /** Get array of all hardware sensors installed on the device */
+  static getAvailableSensorsList() {
+    const result = this.#callNative('getAvailableSensorsList', '[]');
+    return KioskService.#safeJsonParse(result, []);
+  }
+  
 }
