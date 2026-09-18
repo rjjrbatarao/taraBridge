@@ -232,7 +232,6 @@ async function runAllKioskMethods() {
   // ==================== 12. SENSOR INFO ====================
   console.log('\n--- 13. Sensor Info ---');
   console.log('startSensorUpdates:', TaraKiosk.startSensorUpdates());
-  console.log('stopSensorUpdates:', TaraKiosk.stopSensorUpdates());
   console.log('getAccelerometerData:', TaraKiosk.getAccelerometerData());
   console.log('getGyroscopeData:', TaraKiosk.getGyroscopeData());
   console.log('getLightLux:', TaraKiosk.getLightLux());
@@ -241,6 +240,7 @@ async function runAllKioskMethods() {
   console.log('getAmbientTempC:', TaraKiosk.getAmbientTempC());
   console.log('getAllSensorsData:', TaraKiosk.getAllSensorsData());
   console.log('getAvailableSensorsList:', TaraKiosk.getAvailableSensorsList());
+  console.log('stopSensorUpdates:', TaraKiosk.stopSensorUpdates());
 
   console.log('\n✅ Completed invoking all API methods!');
 }
